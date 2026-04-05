@@ -1,0 +1,632 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hiring Mine - Connect Employers and Job Seekers</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Segoe UI", sans-serif;
+        background-color: #f0f2f8;
+        color: #333;
+      }
+
+      /* NAVBAR */
+      .nav-link {
+  color: #333 !important;
+  font-size: 0.95rem;
+  font-weight: 500;
+  margin: 0 6px;
+}
+
+.business-link {
+  color: #6c5cff !important;
+  font-weight: 600;
+}
+
+/* prevent Bootstrap override */
+.navbar .nav-link.business-link {
+  color: #6c5cff !important;
+}
+
+.nav-link:hover {
+  color: #6c5cff !important;
+}
+      .navbar-brand {
+        font-weight: 800;
+        font-size: 1.4rem;
+        color: #333;
+      }
+      .navbar-brand span {
+        color: #f5a623;
+      }
+      .navbar-brand .dot {
+        color: #f5a623;
+        font-size: 1.6rem;
+        line-height: 0;
+        vertical-align: middle;
+      }
+      .nav-link {
+        color: #555 !important;
+        font-size: 0.9rem;
+        font-weight: 500;
+        margin: 0 4px;
+      }
+      .nav-link:hover {
+        color: #4b3bff !important;
+      }
+      .btn-business {
+  background: #6c5cff;
+  color: #fff !important;
+  border-radius: 20px;
+  padding: 6px 18px !important;
+  font-size: 0.9rem;
+}
+
+.btn-business:hover {
+  background: #5848e5;
+}
+      .theme-toggle {
+  width: 50px;
+  height: 26px;
+  background: #e0e0e0;
+  border-radius: 20px;
+  position: relative;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 3px;
+}
+
+.theme-toggle::after {
+  content: "☀️";
+  width: 20px;
+  height: 20px;
+  background: #0d1b2a;
+  border-radius: 50%;
+  position: absolute;
+  right: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  transition: 0.3s;
+}
+
+      /* HERO SECTION */
+      .hero-section {
+        padding: 60px 0 40px;
+        text-align: center;
+        background: #f0f2f8;
+        position: relative;
+      }
+      .hero-section h1 {
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: #222;
+      }
+      .hero-section h1 span {
+        color: #4b3bff;
+      }
+      /* FOUNDERS SECTION */
+      .founders-section {
+        padding: 60px 0;
+        background: #f0f2f8;
+      }
+      .founder-card {
+        background: #fff;
+        border-radius: 16px;
+        padding: 28px;
+        display: flex;
+        gap: 24px;
+        align-items: flex-start;
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        margin-bottom: 24px;
+      }
+      .founder-photo {
+        width: 110px;
+        height: 130px;
+        border-radius: 12px;
+        object-fit: cover;
+        background: #ddd;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: #999;
+        overflow: hidden;
+      }
+      .founder-info h4 {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: #222;
+      }
+      .founder-info h4 span {
+        color: #4b3bff;
+        font-weight: 500;
+        font-size: 0.95rem;
+      }
+      .founder-info p {
+        font-size: 0.82rem;
+        color: #555;
+        line-height: 1.6;
+        margin-top: 8px;
+      }
+
+      /* TEAM SECTION */
+      .team-section {
+        padding: 40px 0 60px;
+        background: #f0f2f8;
+        text-align: center;
+      }
+      .team-section h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 36px;
+      }
+      .team-section h2 span {
+        color: #4b3bff;
+      }
+      .team-member {
+        text-align: center;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      .team-member:hover {
+        transform: translateY(-10px);
+      }
+      .team-photo {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        background: #ccc;
+        margin: 0 auto 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        color: #999;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+      .team-member:hover .team-photo {
+        box-shadow: none;
+      }
+      .team-photo img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .team-member h6 {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 2px;
+        transition: color 0.3s ease;
+      }
+      .team-member:hover h6 {
+        color: #4b3bff;
+      }
+      .team-member small {
+        font-size: 0.75rem;
+        color: #888;
+        transition: color 0.3s ease;
+      }
+      .team-member:hover small {
+        color: #f5a623;
+      }
+
+      /* CULTURE SECTION */
+      .culture-section {
+        padding: 40px 0 60px;
+        background: #f0f2f8;
+        text-align: center;
+      }
+      .culture-section h2 {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 30px;
+      }
+      .culture-section h2 span {
+        color: #4b3bff;
+      }
+      .culture-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: auto;
+        gap: 10px;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+      .culture-img {
+        border-radius: 10px;
+        width: 100%;
+        height: 140px;
+        object-fit: cover;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+      }
+      .culture-img:hover {
+        transform: translateY(-10px);
+      }
+      .culture-img.tall {
+        grid-row: span 2;
+        height: 100%;
+      }
+      .culture-img.wide {
+        grid-column: span 2;
+      }
+
+      /* FOOTER */
+      footer {
+        background: #5b4fff;
+        color: #fff;
+        padding: 50px 0 0;
+      }
+      footer .brand img {
+        height: 32px;
+        filter: brightness(0) invert(1);
+        margin-bottom: 16px;
+      }
+      footer p {
+        font-size: 0.88rem;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.7;
+        max-width: 360px;
+      }
+      footer h6 {
+        font-weight: 700;
+        font-size: 1rem;
+        margin-bottom: 20px;
+        color: #fff;
+      }
+      footer a {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+        font-size: 0.88rem;
+        display: block;
+        margin-bottom: 14px;
+      }
+      footer a:hover {
+        color: #fff;
+      }
+      .follow-us p {
+        font-size: 1rem;
+        font-weight: 600;
+        margin-bottom: 16px;
+        color: #fff;
+      }
+      .social-icons a {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 44px;
+        height: 44px;
+        color: #fff;
+        margin-right: 16px;
+        font-size: 1.3rem;
+        text-decoration: none;
+      }
+      .social-icons a:hover {
+        opacity: 0.8;
+      }
+      .footer-bottom {
+        background: #4a3eee;
+        margin-top: 40px;
+        padding: 16px 0;
+        text-align: center;
+        font-size: 0.82rem;
+        color: rgba(255, 255, 255, 0.8);
+      }
+      .footer-bottom a {
+        display: inline;
+        color: rgba(255, 255, 255, 0.8);
+        margin: 0 8px;
+      }
+
+      /* RESPONSIVE MEDIA QUERIES */
+
+      /* TABLET (max 992px) */
+      @media (max-width: 992px) {
+        .navbar { padding: 12px 20px; }
+        .hero-section h1 { font-size: 2rem; }
+        .culture-grid { max-width: 100%; }
+      }
+
+      /* MOBILE LARGE (max 768px) */
+      @media (max-width: 768px) {
+        .hero-section h1 { font-size: 1.7rem; }
+        .founders-section { padding: 40px 0; }
+        .founder-card { flex-direction: column; align-items: center; text-align: center; }
+        .founder-photo { width: 100px; height: 120px; }
+        .team-section h2 { font-size: 1.5rem; }
+        .culture-section h2 { font-size: 1.5rem; }
+        .culture-grid { grid-template-columns: repeat(2, 1fr); max-width: 100%; }
+        .culture-img.wide { grid-column: span 2; }
+        .culture-img.tall { grid-row: span 1; height: 140px; }
+        footer p { max-width: 100%; }
+        .col-md-3.offset-md-3 { margin-top: 10px; }
+        .footer-bottom { font-size: 0.72rem; }
+        .footer-bottom a { margin: 0 4px; }
+      }
+
+      /* MOBILE SMALL (max 576px) */
+      @media (max-width: 576px) {
+        .navbar { padding: 10px 14px; }
+        .hero-section { padding: 30px 0 20px; }
+        .hero-section h1 { font-size: 1.4rem; }
+        .founder-card { padding: 18px; }
+        .founder-info h4 { font-size: 0.95rem; }
+        .founder-info p { font-size: 0.78rem; }
+        .team-section h2 { font-size: 1.3rem; }
+        .team-photo { width: 75px; height: 75px; }
+        .culture-section h2 { font-size: 1.3rem; }
+        .culture-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+        .culture-img { height: 110px; }
+        .culture-img.tall { height: 110px; grid-row: span 1; }
+        footer { padding: 30px 0 0; }
+        .social-icons a { width: 36px; height: 36px; font-size: 1rem; margin-right: 10px; }
+        .footer-bottom { font-size: 0.68rem; padding: 12px 10px; }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid px-4">
+        <a class="navbar-brand" href="#"
+          ><img
+            src="./Assests/Hiring Mine Logo-453a72d3.png"
+            alt="Hiring Mine"
+            style="height: 36px"
+        /></a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navMenu"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+  <ul class="navbar-nav mx-auto gap-2">
+          <ul class="navbar-nav gap-1">
+            <li class="nav-item"><a class="nav-link" href="#">About Us</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Jobs</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Mentorship</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">Practice</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Join Now</a></li>
+            <li class="nav-item">
+              <a class="nav-link business-link" href="#">Business</a>
+            </li>
+            <li class="nav-item"><a class="nav-link" href="#">More ▾</a></li>
+          </ul>
+        </div>
+        <div class="theme-toggle ms-3"></div>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container position-relative">
+        <h1 class="mb-4">
+          Here's to the Talent<br /><span>that never Stops</span>
+        </h1>
+
+        <div class="row justify-content-center">
+          <div class="col-12 text-center">
+            <img
+              src="./Assests/Life-at-HiringMine-1b00974f.png"
+              alt="Here is to the Shiners"
+              class="img-fluid"
+              style="max-width: 700px; width: 100%"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOUNDERS SECTION -->
+    <section class="founders-section">
+      <div class="container" style="max-width: 760px">
+        <!-- Muhammad Sufiyan -->
+        <div class="founder-card">
+          <div class="founder-photo">
+            <img
+              src="./Assests/sufiyan1-c9f319db.png"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+          <div class="founder-info">
+            <h4>Muhammad Sufiyan, <span>(Founder & CEO)</span></h4>
+            <p>
+              From shaping stories through 3D animation to building platforms
+              that shape careers — Muhammad Sufiyan is not your conventional
+              tech founder. With over 12 years of experience in the animation
+              and creative industry, he made a bold pivot into the world of
+              software engineering in 2021, driven by an unshakeable curiosity
+              and passion for innovation.
+            </p>
+            <p>
+              Today, as the Founder & CEO of HiringMine, he blends his creative
+              roots with technical mastery to reimagine how hiring works in the
+              modern world. With expertise in the MERN stack and a product
+              mindset, he leads with a vision: to make talent discovery smarter,
+              inclusive, and truly global.
+            </p>
+            <p>
+              Under his leadership, HiringMine isn't just another recruitment
+              platform — it's a mission to empower individuals, help recruiters
+              hire better, and bring opportunity to those often overlooked.
+            </p>
+            <p>
+              Built with ❤️ in Pakistan, for the world — and led by someone
+              who's never been afraid to start again and build bigger.
+            </p>
+          </div>
+        </div>
+
+        <!-- Jaffar Aman -->
+        <div class="founder-card">
+          <div class="founder-photo">
+            <img
+              src="./Assests/Jaffar1-fffda049.png"
+              style="width: 100%; height: 100%; object-fit: cover"
+            />
+          </div>
+          <div class="founder-info">
+            <h4>Jaffar Aman, <span>(Co-Founder & CTO)</span></h4>
+            <p>
+              Some build products. Others build people. Jaffar Aman is doing
+              both.
+            </p>
+            <p>
+              As the technical mind behind HiringMine, Jaffar is redefining how
+              hiring works in emerging markets. With a sharp eye for scalable
+              systems and a deep belief in tech-for-good, he's building
+              AI-powered solutions that reduce noise, cut hiring time, and bring
+              real structure to the messy world of recruitment.
+            </p>
+            <p>
+              But Jaffar's journey didn't begin with startups. It began in
+              classrooms — first as a student, then as a mentor. Today, as a
+              Lead Trainer at SMIT, he's helped over 1,500 learners launch their
+              careers in tech. His mission? Empower the next generation of
+              developers to not just write code — but create impact.
+            </p>
+            <p>
+              Whether it's building tools that pull job data from visuals, or
+              leading teams through complex backend architectures, Jaffar brings
+              clarity, purpose, and speed to everything he touches. He doesn't
+              just solve problems — he solves them at scale.
+            </p>
+            <p>
+              At HiringMine, he's not chasing trends. He's engineering the
+              future of hiring.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MEET THE TEAM -->
+    <section class="team-section">
+      <div class="container">
+        <h2>Meet the <span>Hiring Mine Team</span></h2>
+        <div class="row justify-content-center g-4">
+          <div class="col-6 col-md-3">
+            <div class="team-member">
+              <div class="team-photo">👤</div>
+              <h6>Muhammad Sufiyan</h6>
+              <small>Founder & CEO</small>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="team-member">
+              <div class="team-photo">👤</div>
+              <h6>Jaffar Aman</h6>
+              <small>Co-Founder & CTO</small>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="team-member">
+              <div class="team-photo">👤</div>
+              <h6>Muhammad Hasan</h6>
+              <small>Mern Stack Developer</small>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="team-member">
+              <div class="team-photo">
+                <img
+                  src="./Assests/WhatsApp_Image_2025-05-19_at_4.03.25_PM_ex7ygl.jpg"
+                  alt="Ayan Sheikh"
+                />
+              </div>
+              <h6>Ayan Sheikh</h6>
+              <small>Mobile Application Developer</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CULTURE SECTION -->
+    <section class="culture-section">
+      <div class="container">
+        <h2>Culture at <span>Hiring Mine</span></h2>
+        <div class="culture-grid">
+          <img src="./Assests/2-7f019c59.jpg" class="culture-img wide" />
+          <img src="./Assests/3-4a84e598.jpg" class="culture-img tall" />
+          <img src="./Assests/4-3621ba3e.jpg" class="culture-img" />
+          <img src="./Assests/5-90516f02.jpg" class="culture-img" />
+          <img src="./Assests/6-fd72e5b8.jpg" class="culture-img" />
+          <img src="./Assests/7-2a096583.jpg" class="culture-img wide" />
+          <img src="./Assests/8-ea275e2c.jpg" class="culture-img" />
+          <img src="./Assests/9-7bcc80b7.jpg" class="culture-img" />
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="brand">
+              <img src="./Assests/Hiring Mine Logo-453a72d3.png" alt="Hiring Mine" />
+            </div>
+            <p>Built with ❤️ in Pakistan for the World.</p>
+            <p class="mt-3">
+              HiringMine bridges top talent and visionary companies through a
+              smart, streamlined platform. Empowering candidates to shine, and
+              employers to hire better — faster. Your next opportunity, powered
+              by technology and trust.
+            </p>
+            <div class="follow-us mt-4">
+              <p>Follow us</p>
+              <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-3 offset-md-3 mb-4">
+            <h6>Contact Us</h6>
+            <a href="#">✉ portal.hiringmine@gmail.com</a>
+            <a href="#">Life at HiringMine</a>
+            <a href="#">About HiringMine</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms and Condition</a>
+        <span>Copyright Hiringmine 2026. All Rights Reserved</span>
+      </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
